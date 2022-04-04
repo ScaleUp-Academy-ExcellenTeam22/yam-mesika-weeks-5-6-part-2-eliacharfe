@@ -1,25 +1,20 @@
 import functools
+from typing import Iterator
 
 
-def generate_divisors_of_a_number(number: int):
-    for i in range(1, number // 2 + 1):
-        if number % i == 0:
-            yield i
-
-
-def generate_all_integers_greater_than_six():
-    integer = 6
+def generate_all_perfect_dividers(divider: int) -> Iterator[int]:
     while True:
-        yield integer
-        integer += 1
+        if divider == functools.reduce(lambda total, new_div: total + new_div,
+                                       filter(lambda num: divider % num == 0, range(1, divider // 2 + 1))):
+            yield divider
+        divider += 1
 
 
-def print_all_numbers_equals_to_sum_of_their_divisors():
-    for i in generate_all_integers_greater_than_six():
-        if i == functools.reduce(lambda total, new_div: total + new_div, generate_divisors_of_a_number(i)):
-            print(i)
+def print_all_dividers_equals_to_sum_of_their_divisors() -> None:
+    for perfect_divider in generate_all_perfect_dividers(6):
+        print(perfect_divider)
 
 
 if __name__ == '__main__':
-    print_all_numbers_equals_to_sum_of_their_divisors()
+    print_all_dividers_equals_to_sum_of_their_divisors()
 
