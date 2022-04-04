@@ -1,4 +1,4 @@
-import functools
+from functools import reduce
 from typing import Iterator
 
 
@@ -10,8 +10,8 @@ def generate_all_perfect_dividers(divider: int = 2) -> Iterator[int]:
     :return: An iterator of the "perfect dividers"
     """
     while True:
-        if divider == functools.reduce(lambda total, new_div: total + new_div,
-                                       filter(lambda num: divider % num == 0, range(1, divider // 2 + 1))):
+        if divider == reduce(lambda total, new_div: total + new_div,
+                             filter(lambda num: divider % num == 0, range(1, divider // 2 + 1))):
             yield divider
         divider += 1
 
