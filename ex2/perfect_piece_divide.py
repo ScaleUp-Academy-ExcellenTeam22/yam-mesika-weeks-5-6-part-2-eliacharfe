@@ -1,6 +1,6 @@
 from functools import reduce
 from typing import Iterator
-from itertools import count
+from itertools import count as infinite_count
 
 
 def generate_all_perfect_dividers(start_divider: int = 2) -> Iterator[int]:
@@ -10,7 +10,7 @@ def generate_all_perfect_dividers(start_divider: int = 2) -> Iterator[int]:
     :param start_divider: The start integer.
     :return: An iterator of the "perfect dividers".
     """
-    for divider in count(start_divider):
+    for divider in infinite_count(start_divider):
         all_divisors_of_divider = filter(lambda num: divider % num == 0, range(1, divider // 2 + 1))
         if divider == reduce(lambda total, new_div: total + new_div, all_divisors_of_divider):
             yield divider
@@ -18,7 +18,7 @@ def generate_all_perfect_dividers(start_divider: int = 2) -> Iterator[int]:
 
 def print_all_dividers_equals_to_sum_of_their_divisors() -> None:
     """
-    Print all positive integers that the sum of their divisors are equals to them
+    Print all positive integers that the sum of their divisors are equals to them.
     """
     for perfect_divider in generate_all_perfect_dividers(6):
         print(perfect_divider)
