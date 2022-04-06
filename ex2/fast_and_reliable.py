@@ -1,8 +1,8 @@
 import time
-from typing import IO
+from typing import IO, List, Set
 
 
-def build_list_of_words(text_file: IO[str]):
+def build_list_of_words(text_file: IO[str]) -> List[str]:
     """
     Build a list of words from a file given
     :param text_file: The file containing words
@@ -11,7 +11,7 @@ def build_list_of_words(text_file: IO[str]):
     return [word for word in text_file]
 
 
-def build_set_of_words(text_file: IO[str]):
+def build_set_of_words(text_file: IO[str]) -> Set[str]:
     """
     Build a set of words from a file given
     :param text_file: The file containing words
@@ -20,7 +20,7 @@ def build_set_of_words(text_file: IO[str]):
     return {word for word in text_file}
 
 
-def average_runtime(data_structure, word: str):
+def average_runtime(data_structure, word: str) -> time:
     """
     Gets a data-structure and a word, and search the word a 1000 times while calculating the time that it tooks
     and returns the time
