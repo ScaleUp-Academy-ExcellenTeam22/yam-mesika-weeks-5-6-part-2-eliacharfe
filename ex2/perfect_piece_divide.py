@@ -6,12 +6,12 @@ def generate_all_perfect_dividers(divider: int = 2) -> Iterator[int]:
     """
     Generator that generates all positive integers greater(or equals) to the integer passed to
     the function, that the sum of their divisors are equals to them ("perfect dividers").
-    :param divider: The start integer
-    :return: An iterator of the "perfect dividers"
+    :param divider: The start integer.
+    :return: An iterator of the "perfect dividers".
     """
     while True:
-        if divider == reduce(lambda total, new_div: total + new_div,
-                             filter(lambda num: divider % num == 0, range(1, divider // 2 + 1))):
+        all_divisors_of_divider = filter(lambda num: divider % num == 0, range(1, divider // 2 + 1))
+        if divider == reduce(lambda total, new_div: total + new_div, all_divisors_of_divider):
             yield divider
         divider += 1
 
