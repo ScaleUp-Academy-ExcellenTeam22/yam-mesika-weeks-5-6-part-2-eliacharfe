@@ -1,9 +1,11 @@
 import os
 import re
+from typing import Iterator, Dict
+
 from bs4 import BeautifulSoup
 
 
-def generate_num_chapter_with_titles():
+def generate_num_chapter_with_titles() -> Iterator[dict]:
     """
     A generator function that pass on all unordered html files in directory "potter" and for each
     html file extract from the title the number og chapter and the correct new file name to be rename
@@ -25,11 +27,11 @@ def generate_num_chapter_with_titles():
             yield num_of_chapter, new_file_name
 
 
-def get_dictionary_of_num_chapter_new_filename():
+def get_dictionary_of_num_chapter_new_filename() -> Dict[int, str]:
     return {num_chapter: new_name_file for num_chapter, new_name_file in generate_num_chapter_with_titles()}
 
 
-def change_files_name():
+def change_files_name() -> None:
     """
     Call a function that generate all number of chapters with their correct title names of
     chapter, and build a dictionary that the keys are a the number of chapter and the values
